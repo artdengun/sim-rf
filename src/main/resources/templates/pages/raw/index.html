@@ -35,13 +35,13 @@
                 <thead>
                 <tr>
                   <th class="text-center">No</th>
-                  <th class="text-center"><a class="sorted" sd:pagination-sort="vendor">Vendor</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="namaProduct">Nama Product</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="productionDate">Produksi</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="expDate">Exp Date</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="negara">Negara</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="uom">UOM</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="quantity">Quantity</a></th>
+                  <th class="text-center"><a class="sorted" sd:pagination-sort="vendor">Vendor</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="codeBarang">Kode</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="tanggalPenerimaan">Tanggal Penerimaan</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="deskripsi">Deskripsi</a></th>
@@ -58,7 +58,7 @@
                   <td th:text="${raw.negara.negaraDisplay}"></td>
                   <td th:text="${raw.uom.uomDisplay}"></td>
                   <td th:text="${raw.quantity}"></td>
-                  <td th:text="${raw.vendor.vendorDisplay}"></td>
+                  <td th:text="${raw.vendors.namaVendor}"></td>
                   <td th:text="${raw.codeBarang}"></td>
                   <td th:text="${raw.tanggalPenerimaan}"></td>
                   <td th:text="${raw.deskripsi}"></td>

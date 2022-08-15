@@ -3,10 +3,7 @@ package com.deni.gunawan.sistemmanajemenricheesefactory.entity;
 
 import com.deni.gunawan.sistemmanajemenricheesefactory.enums.Negara;
 import com.deni.gunawan.sistemmanajemenricheesefactory.enums.UOM;
-import com.deni.gunawan.sistemmanajemenricheesefactory.enums.Vendor;
 import lombok.Data;
-
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -45,8 +42,9 @@ public class Raw {
     @Column(name = "deskripsi", length = 100)
     private String deskripsi;
 
-    @Enumerated(EnumType.STRING)
-    private Vendor vendor;
+    @OneToOne
+    @JoinColumn(name = "vendor_id")
+    private Vendors vendors;
 
     @Enumerated(EnumType.STRING)
     private Negara negara;

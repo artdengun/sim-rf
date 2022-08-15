@@ -46,7 +46,7 @@
                   <th class="text-center"><a class="sorted" sd:pagination-sort="tanggalRetur">Tanggal Retur</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="deskripsi">Deskripsi</a></th>
                   <th class="text-center"><a class="sorted" sd:pagination-sort="pic">PIC</a></th>
-                  <div sec:authorize="hasAnyAuthority('LEADER')">
+                  <div sec:authorize="hasAnyAuthority('LEADER', 'MANAJER')">
                   <th class="text-center">Action</th>
                   </div>
                 </tr>
@@ -54,7 +54,7 @@
                 <tbody>
                 <tr th:each="retur, itrStat: ${listRetur}">
                   <td th:text="${itrStat.count}"></td>
-                  <td th:text="${retur.vendor.vendorDisplay}"></td>
+                  <td th:text="${retur.vendors.namaVendor}"></td>
                   <td th:text="${retur.namaBarang}"></td>
                   <td th:text="${retur.productionDate}"></td>
                   <td th:text="${retur.expDate}"></td>
@@ -65,7 +65,7 @@
                   <td th:text="${retur.tanggalRetur}"></td>
                   <td th:text="${retur.deskripsi}"></td>
                   <td th:text="${retur.users.nama}"></td>
-                  <div sec:authorize="hasAnyAuthority('LEADER')">
+                  <div sec:authorize="hasAnyAuthority('LEADER', 'MANAJER')">
                   <td>
                     <a th:href="@{/retur/form/{id}(id=${retur.id})}" class="btn btn-primary"><i class="fas fa-edit"></i>Change</a>
                     <a th:href="@{/retur/delete/{id}(id=${retur.id})}" class="btn btn-danger"><i class="fas fa-trash"></i>Delete</a>

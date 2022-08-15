@@ -3,6 +3,7 @@ package com.deni.gunawan.sistemmanajemenricheesefactory.controllers;
 import com.deni.gunawan.sistemmanajemenricheesefactory.entity.Frozen;
 import com.deni.gunawan.sistemmanajemenricheesefactory.repository.FrozenRepo;
 import com.deni.gunawan.sistemmanajemenricheesefactory.repository.UserRepo;
+import com.deni.gunawan.sistemmanajemenricheesefactory.repository.VendorRepo;
 import com.deni.gunawan.sistemmanajemenricheesefactory.services.FrozenService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,11 +24,14 @@ public class FrozenController {
 
         private FrozenService frozenService;
         private FrozenRepo frozenRepo;
+        private VendorRepo vendorRepo;
         private UserRepo usersRepo;
 
         @GetMapping(value = "/index")
         public String getList(ModelMap map, Pageable pageable){
             map.addAttribute("list", frozenRepo.findAll(pageable));
+            map.addAttribute("listUsers", usersRepo.findAll());
+            map.addAttribute("listVendors", vendorRepo.findAll());
             return "pages/frozen/index";
         }
 
@@ -36,6 +40,7 @@ public class FrozenController {
             Frozen frozen = new Frozen();
             map.addAttribute("frozen", frozen);
             map.addAttribute("users", usersRepo.findAll());
+            map.addAttribute("vendors", vendorRepo.findAll());
             return "pages/frozen/form";
         }
 
@@ -47,6 +52,7 @@ public class FrozenController {
                             -> new IllegalArgumentException("Gagal Get Data Id : " + id));
             model.addAttribute("frozen", frozen);
             model.addAttribute("users", usersRepo.findAll());
+            model.addAttribute("vendors", vendorRepo.findAll());
             return "pages/frozen/edit";
         }catch (Exception e){
             return "pages/frozen/index";
@@ -57,6 +63,8 @@ public class FrozenController {
     public String updateData(Model model, @ModelAttribute(value = "frozen") Frozen frozen) {
         {
             model.addAttribute("frozen", frozen);
+            model.addAttribute("users", usersRepo.findAll());
+            model.addAttribute("vendors", vendorRepo.findAll());
             frozenService.save(frozen);
             return "redirect:/frozen/index";
         }

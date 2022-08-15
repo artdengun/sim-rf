@@ -77,7 +77,7 @@ public class FrozenExcelReporting {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
 
-            createCell(row, columnCount++, frozen.getVendor().getVendorDisplay(), style);
+            createCell(row, columnCount++, frozen.getVendors().getNamaVendor(), style);
             createCell(row, columnCount++, frozen.getSuhuProduct(), style);
             createCell(row, columnCount++, frozen.getNamaProduct(), style);
             createCell(row, columnCount++, frozen.getProductionDate(), style);

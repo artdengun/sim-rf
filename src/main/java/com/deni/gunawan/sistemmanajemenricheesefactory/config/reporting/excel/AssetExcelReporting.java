@@ -75,7 +75,7 @@ public class AssetExcelReporting {
 
             createCell(row, columnCount++, asset.getNoAssets(), style);
             createCell(row, columnCount++, asset.getNama(), style);
-            createCell(row, columnCount++, asset.getVendor().getVendorDisplay(), style);
+            createCell(row, columnCount++, asset.getVendors().getNamaVendor(), style);
             createCell(row, columnCount++, asset.getTanggalDiterima(), style);
             createCell(row, columnCount++, asset.getJenis().getJenisDisplay(), style);
             createCell(row, columnCount++, asset.getQuantity(), style);

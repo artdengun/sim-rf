@@ -79,7 +79,7 @@ public class ReturExcelReporting {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
 
-            createCell(row, columnCount++, Retur.getVendor().getVendorDisplay(), style);
+            createCell(row, columnCount++, Retur.getVendors().getNamaVendor(), style);
             createCell(row, columnCount++, Retur.getNamaBarang(), style);
             createCell(row, columnCount++, Retur.getProductionDate(), style);
             createCell(row, columnCount++, Retur.getExpDate(), style);

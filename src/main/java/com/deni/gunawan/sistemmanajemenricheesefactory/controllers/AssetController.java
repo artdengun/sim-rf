@@ -3,6 +3,7 @@ package com.deni.gunawan.sistemmanajemenricheesefactory.controllers;
 import com.deni.gunawan.sistemmanajemenricheesefactory.entity.Asset;
 import com.deni.gunawan.sistemmanajemenricheesefactory.repository.AssetRepo;
 import com.deni.gunawan.sistemmanajemenricheesefactory.repository.UserRepo;
+import com.deni.gunawan.sistemmanajemenricheesefactory.repository.VendorRepo;
 import com.deni.gunawan.sistemmanajemenricheesefactory.services.AssetService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -27,11 +28,14 @@ public class AssetController {
 
     private AssetService assetService;
     private AssetRepo assetRepo;
+    private VendorRepo vendorRepo;
     private UserRepo usersRepo;
 
     @GetMapping(value = "/index")
     public String getList(ModelMap map, Pageable pageable){
         map.addAttribute("listAsset", assetRepo.findAll(pageable));
+        map.addAttribute("listUsers", usersRepo.findAll());
+        map.addAttribute("listVendors", vendorRepo.findAll());
         return "pages/asset/index";
     }
 
@@ -39,6 +43,7 @@ public class AssetController {
     public String getForm(ModelMap map){
         Asset asset = new Asset();
         map.addAttribute("asset", asset);
+        map.addAttribute("vendors", vendorRepo.findAll());
         map.addAttribute("users", usersRepo.findAll());
         return "pages/asset/form";
     }
@@ -51,6 +56,7 @@ public class AssetController {
                     -> new IllegalArgumentException("Gagal Get Data Id : " + id));
             model.addAttribute("asset", asset);
             model.addAttribute("users", usersRepo.findAll());
+            model.addAttribute("vendors", vendorRepo.findAll());
             return "pages/asset/edit";
         }catch (Exception e){
             return "pages/asset/index";
@@ -61,6 +67,8 @@ public class AssetController {
     public String updateData(Model model, @ModelAttribute(value = "asset") Asset asset) {
         {
             model.addAttribute("asset", asset);
+            model.addAttribute("users", usersRepo.findAll());
+            model.addAttribute("vendors", vendorRepo.findAll());
             assetService.saved(asset);
             return "redirect:/asset/index";
         }

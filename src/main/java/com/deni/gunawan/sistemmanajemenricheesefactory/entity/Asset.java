@@ -1,10 +1,7 @@
 package com.deni.gunawan.sistemmanajemenricheesefactory.entity;
 
 import com.deni.gunawan.sistemmanajemenricheesefactory.enums.Jenis;
-import com.deni.gunawan.sistemmanajemenricheesefactory.enums.Vendor;
 import lombok.*;
-
-import org.hibernate.annotations.GenericGenerator;
 
 import java.math.BigDecimal;
 
@@ -46,8 +43,9 @@ public class Asset {
     @Column(name = "tanggal_input", length = 30)
     private String tanggalInput;
 
-    @Enumerated(EnumType.STRING)
-    private Vendor vendor;
+    @OneToOne
+    @JoinColumn(name = "vendor_id")
+    private Vendors vendors;
 
     @Enumerated(EnumType.STRING)
     private Jenis jenis;

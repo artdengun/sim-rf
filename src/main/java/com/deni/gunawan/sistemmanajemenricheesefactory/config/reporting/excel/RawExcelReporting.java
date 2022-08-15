@@ -77,7 +77,7 @@ public class RawExcelReporting {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
 
-            createCell(row, columnCount++, raw.getVendor().getVendorDisplay(), style);
+            createCell(row, columnCount++, raw.getVendors().getNamaVendor(), style);
             createCell(row, columnCount++, raw.getNamaProduct(), style);
             createCell(row, columnCount++, raw.getProductionDate(), style);
             createCell(row, columnCount++, raw.getExpDate(), style);
